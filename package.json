@@ -4,6 +4,9 @@
   "description": "Compose and react upon redux actions",
   "main": "dist/index.js",
   "scripts": {
+    "prebuild": "npm run clean",
+    "build": "tsc",
+    "clean": "rimraf dist",
     "test": "jest"
   },
   "repository": {
@@ -26,6 +29,7 @@
     "jest": "^26.1.0",
     "prettier": "^2.0.5",
     "redux": "^4.0.5",
+    "rimraf": "^3.0.2",
     "ts-jest": "^26.1.1",
     "typescript": "^3.9.5"
   },
