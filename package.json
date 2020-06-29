@@ -1,0 +1,35 @@
+{
+  "name": "redux-event",
+  "version": "0.0.0",
+  "description": "Compose and react upon redux actions",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johngeorgewright/redux-event.git"
+  },
+  "keywords": [
+    "redux",
+    "events"
+  ],
+  "author": "John Wright <johngeorge.wright@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/johngeorgewright/redux-event/issues"
+  },
+  "homepage": "https://github.com/johngeorgewright/redux-event#readme",
+  "devDependencies": {
+    "@types/jest": "^26.0.3",
+    "@types/node": "^14.0.14",
+    "jest": "^26.1.0",
+    "prettier": "^2.0.5",
+    "redux": "^4.0.5",
+    "ts-jest": "^26.1.1",
+    "typescript": "^3.9.5"
+  },
+  "peerDependencies": {
+    "redux": ">=4.0.0"
+  }
+}
