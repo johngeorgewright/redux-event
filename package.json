@@ -7,7 +7,7 @@
     "prepublishOnly": "npm run build",
     "prebuild": "npm run clean",
     "build": "tsc",
-    "postbuild": "rimraf src/**/__tests__",
+    "postbuild": "rimraf dist/**/__tests__",
     "clean": "rimraf dist",
     "test": "jest src"
   },
