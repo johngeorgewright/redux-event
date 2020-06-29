@@ -1,6 +1,0 @@
-jest.config.js
-*.log
-node_modules
-prettier.config.js
-src
-tsconfig.json
