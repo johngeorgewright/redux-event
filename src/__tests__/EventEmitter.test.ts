@@ -17,17 +17,20 @@ let emitter: EventEmitter<State, Actions>
 let mock: jest.Mock
 
 beforeEach(() => {
-  emitter = new EventEmitter<State, Actions>()
+  emitter = new EventEmitter()
   mock = jest.fn()
 })
 
 test('emit', async () => {
-  emitter.on('ADD_FOO', mock)
+  emitter.on('ADD_FOO', async (state, action) => {
+    expect(state).toBe({})
+    expect(action.type).toBe('ADD_FOO')
+    expect(action.foo).toBe('bar')
+  })
   emitter.on('REMOVE_FOO', mock)
   await emitter.emit('ADD_FOO', {}, { type: 'ADD_FOO', foo: 'bar' })
   await emitter.emit('REMOVE_FOO', {}, { type: 'REMOVE_FOO' })
-  expect(mock).toHaveBeenCalledTimes(2)
-  expect(mock).toHaveBeenCalledWith({}, { type: 'ADD_FOO', foo: 'bar' })
+  expect(mock).toHaveBeenCalledTimes(1)
   expect(mock).toHaveBeenCalledWith({}, { type: 'REMOVE_FOO' })
 })
 

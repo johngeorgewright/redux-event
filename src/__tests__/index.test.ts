@@ -34,17 +34,21 @@ test('before', async () => {
   expect(mock).toHaveBeenCalledWith({}, { type: 'ADD_FOO', foo: 'bar' })
 })
 
-test('after', async () => {
-  const { after, middleware } = eventMiddleware()
+test('after', async (done) => {
+  const { after, middleware } = eventMiddleware<State, Actions>()
   const store = createStore(reducer, applyMiddleware(middleware))
-  const mock = jest.fn()
 
-  after('ADD_FOO', mock)
+  after('ADD_FOO', async (state, action) => {
+    expect(state).toEqual({
+      foo: 'bar',
+    })
+
+    expect(action.type).toBe('ADD_FOO')
+    expect(action.foo).toBe('bar')
+    done()
+  })
+
   store.dispatch({ type: 'ADD_FOO', foo: 'bar' })
-  expect(mock).toHaveBeenCalledWith(
-    { foo: 'bar' },
-    { type: 'ADD_FOO', foo: 'bar' }
-  )
 })
 
 test('onError', (done) => {

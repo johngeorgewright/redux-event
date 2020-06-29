@@ -1,14 +1,15 @@
-import { Action } from 'redux'
+import { EventDescriptions } from './EventEmitter'
 
 export default class EventEmitterError<
   State,
-  Actions extends Action
+  Events extends EventDescriptions,
+  EventName extends keyof Events
 > extends Error {
-  readonly action: Actions
+  readonly action: Events[EventName]
   readonly originalError: Error
   readonly state: State
 
-  constructor(originalError: Error, state: State, action: Actions) {
+  constructor(originalError: Error, state: State, action: Events[EventName]) {
     super(originalError.message)
     this.originalError = originalError
     this.state = state

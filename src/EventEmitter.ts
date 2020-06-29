@@ -1,51 +1,50 @@
-import { AnyAction, Action } from 'redux'
 import EventEmitterError from './EventEmitterError'
+import { Action } from 'redux'
 
-export type Listener<State, Actions extends Action> = (
-  state: Readonly<State>,
-  action: Actions
-) => Promise<void>
+export type EventDescriptions = Record<string, unknown>
 
-export type ErrorHandler<State, Actions extends Action> = (
-  error: EventEmitterError<State, Actions>
+export type ActionsToEvents<A extends Action> = {
+  [EventName in A['type']]: A extends Action<EventName> ? A : never
+}
+
+type Listener<State, A> = (state: State, arg: A) => Promise<void>
+
+type Listeners<State, Events extends EventDescriptions> = {
+  [EventName in keyof Events]: Listener<State, Events[EventName]>[]
+}
+
+export type ListenerAttacher<State, Events extends EventDescriptions> = <
+  EventName extends keyof Events
+>(
+  eventName: EventName,
+  listener: Listener<State, Events[EventName]>
 ) => void
 
-export type ListenerAttacher<State, Actions extends Action> = (
-  eventName: Actions['type'],
-  listener: Listener<State, Actions>
+type ErrorHandler<State, Events extends EventDescriptions> = (
+  error: EventEmitterError<State, Events, any>
 ) => void
 
-export type ListenerRemover<State, Actions extends Action> = (
-  eventName: Actions['type'],
-  listener?: Listener<State, Actions>
+export type ErrorHandlerAttacher<State, Events extends EventDescriptions> = (
+  handler: ErrorHandler<State, Events>
 ) => void
-
-export type ErrorHandlerAttacher<State, Actions extends Action> = (
-  handler: ErrorHandler<State, Actions>
-) => void
-
-export type Emitter<State, Actions extends Action> = (
-  eventName: Actions['type'],
-  state: State,
-  action: Actions
-) => Promise<void>
 
 export default class EventEmitter<
-  State = any,
-  Actions extends Action = AnyAction
+  State,
+  Actions extends Action,
+  Events extends EventDescriptions = ActionsToEvents<Actions>
 > {
-  private listeners: Record<string, Listener<State, Actions>[]>
-  private errorHandlers: ErrorHandler<State, Actions>[]
+  private listeners: Listeners<State, Events>
+  private errorHandlers: ErrorHandler<State, Events>[]
 
   constructor() {
-    this.listeners = {}
+    this.listeners = {} as Listeners<State, Events>
     this.errorHandlers = []
   }
 
-  private async callListener(
+  private async callListener<EventName extends keyof Events>(
     state: State,
-    action: Actions,
-    listener: Listener<State, Actions>
+    action: Events[EventName],
+    listener: Listener<State, Events[EventName]>
   ) {
     try {
       await listener(state, action)
@@ -54,8 +53,12 @@ export default class EventEmitter<
     }
   }
 
-  private callErrorHandlers(error: Error, state: State, action: Actions) {
-    const eventEmitterError = new EventEmitterError<State, Actions>(
+  private callErrorHandlers<EventName extends keyof Events>(
+    error: Error,
+    state: State,
+    action: Events[EventName]
+  ) {
+    const eventEmitterError = new EventEmitterError<State, Events, EventName>(
       error,
       state,
       action
@@ -66,7 +69,7 @@ export default class EventEmitter<
     }
   }
 
-  on: ListenerAttacher<State, Actions> = (eventName, listener) => {
+  on: ListenerAttacher<State, Events> = (eventName, listener) => {
     if (!this.listeners[eventName]) {
       this.listeners[eventName] = []
     }
@@ -74,8 +77,11 @@ export default class EventEmitter<
     this.listeners[eventName].push(listener)
   }
 
-  once: ListenerAttacher<State, Actions> = (eventName, listener) => {
-    const wrapper: Listener<State, Actions> = async (...args) => {
+  once: ListenerAttacher<State, Events> = <EventName extends keyof Events>(
+    eventName: EventName,
+    listener: Listener<State, Events[EventName]>
+  ) => {
+    const wrapper: typeof listener = async (...args) => {
       this.off(eventName, wrapper)
       return listener(...args)
     }
@@ -83,7 +89,10 @@ export default class EventEmitter<
     this.on(eventName, wrapper)
   }
 
-  off: ListenerRemover<State, Actions> = (eventName, listener) => {
+  off<EventName extends keyof Events>(
+    eventName: EventName,
+    listener?: Listener<State, Events[EventName]>
+  ) {
     if (!listener) {
       this.listeners[eventName] = []
       return
@@ -101,11 +110,15 @@ export default class EventEmitter<
     ]
   }
 
-  onError: ErrorHandlerAttacher<State, Actions> = (handler) => {
+  onError: ErrorHandlerAttacher<State, Events> = (handler) => {
     this.errorHandlers.push(handler)
   }
 
-  emit: Emitter<State, Actions> = async (eventName, state, action) => {
+  async emit<EventName extends keyof Events>(
+    eventName: EventName,
+    state: State,
+    action: Events[EventName]
+  ) {
     await Promise.all(
       (this.listeners[eventName] || []).map((listener) =>
         this.callListener(state, action, listener)
