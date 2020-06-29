@@ -4,9 +4,10 @@
   "description": "Compose and react upon redux actions",
   "main": "dist/index.js",
   "scripts": {
-    "prepublish": "npm run build",
+    "prepublishOnly": "npm run build",
     "prebuild": "npm run clean",
     "build": "tsc",
+    "postbuild": "rimraf src/**/__tests__",
     "clean": "rimraf dist",
     "test": "jest src"
   },
