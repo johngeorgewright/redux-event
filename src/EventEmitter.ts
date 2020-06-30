@@ -18,7 +18,7 @@ export type ListenerAttacher<State, Events extends EventDescriptions> = <
 >(
   eventName: EventName,
   listener: Listener<State, Events[EventName]>
-) => void
+) => () => void
 
 type ErrorHandler<State, Events extends EventDescriptions> = (
   error: EventEmitterError<State, Events, any>
@@ -75,6 +75,8 @@ export default class EventEmitter<
     }
 
     this.listeners[eventName].push(listener)
+
+    return () => this.off(eventName, listener)
   }
 
   once: ListenerAttacher<State, Events> = <EventName extends keyof Events>(
@@ -82,11 +84,12 @@ export default class EventEmitter<
     listener: Listener<State, Events[EventName]>
   ) => {
     const wrapper: typeof listener = async (...args) => {
-      this.off(eventName, wrapper)
+      off()
       return listener(...args)
     }
 
-    this.on(eventName, wrapper)
+    const off = this.on(eventName, wrapper)
+    return off
   }
 
   off<EventName extends keyof Events>(
@@ -108,6 +111,49 @@ export default class EventEmitter<
       ...this.listeners[eventName].slice(0, index),
       ...this.listeners[eventName].slice(index + 1),
     ]
+  }
+
+  onMulti<
+    EventName extends keyof Events,
+    T = Record<EventName, Events[EventName]>
+  >(eventNames: Set<EventName>, listener: Listener<State, T>) {
+    let actions = {} as T
+    let state: State
+
+    const finish = (action: Events[EventName]) => {
+      if (Object.keys(actions).length === eventNames.size) {
+        const $actions = { ...actions }
+        actions = {} as T
+
+        listener(state, $actions).catch((error) => {
+          this.callErrorHandlers(error, state, action)
+        })
+      }
+    }
+
+    const offs = [...eventNames].map((eventName) =>
+      this.on(eventName, async (s, action) => {
+        // @ts-ignore EventName cannot be used to index type T!!?? da fuck?
+        actions[eventName] = action
+        state = s
+        finish(action)
+      })
+    )
+
+    return () => offs.forEach((off) => off())
+  }
+
+  onceMulti<
+    EventName extends keyof Events,
+    T = Record<EventName, Events[EventName]>
+  >(eventNames: Set<EventName>, listener: Listener<State, T>) {
+    const wrapper: typeof listener = async (...args) => {
+      off()
+      listener(...args)
+    }
+
+    const off = this.onMulti(eventNames, wrapper)
+    return off
   }
 
   onError: ErrorHandlerAttacher<State, Events> = (handler) => {
