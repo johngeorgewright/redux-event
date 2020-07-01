@@ -13,6 +13,9 @@ export type Broker<State = any, Actions extends Action = AnyAction> = {
   onError: ErrorHandlerAttacher<State, ActionsToEvents<Actions>>
 }
 
+export { EventEmitter }
+export { default as EventEmitterError } from './EventEmitterError'
+
 export default function createMiddleware<
   State = any,
   Actions extends Action = AnyAction
