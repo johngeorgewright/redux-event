@@ -3,13 +3,18 @@ import EventEmitter, {
   ListenerAttacher,
   ErrorHandlerAttacher,
   ActionsToEvents,
+  MultiListenerAttacher,
 } from './EventEmitter'
 
 export type Broker<State = any, Actions extends Action = AnyAction> = {
   before: ListenerAttacher<State, ActionsToEvents<Actions>>
   onceBefore: ListenerAttacher<State, ActionsToEvents<Actions>>
+  multiBefore: MultiListenerAttacher<State, ActionsToEvents<Actions>>
+  onceMultiBefore: MultiListenerAttacher<State, ActionsToEvents<Actions>>
   after: ListenerAttacher<State, ActionsToEvents<Actions>>
   onceAfter: ListenerAttacher<State, ActionsToEvents<Actions>>
+  multiAfter: MultiListenerAttacher<State, ActionsToEvents<Actions>>
+  onceMultiAfter: MultiListenerAttacher<State, ActionsToEvents<Actions>>
   onError: ErrorHandlerAttacher<State, ActionsToEvents<Actions>>
 }
 
@@ -35,8 +40,12 @@ export default function createMiddleware<
   return {
     before: beforeEmitter.on,
     onceBefore: beforeEmitter.once,
+    multiBefore: beforeEmitter.onMulti,
+    onceMultiBefore: beforeEmitter.onceMulti,
     after: afterEmitter.on,
     onceAfter: afterEmitter.once,
+    multiAfter: afterEmitter.onMulti,
+    onceMultiAfter: afterEmitter.onceMulti,
     onError: (handleError) => {
       beforeEmitter.onError(handleError)
       afterEmitter.onError(handleError)

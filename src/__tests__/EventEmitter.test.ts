@@ -50,3 +50,32 @@ test('onError', async () => {
   await emitter.emit('ADD_FOO', {}, { type: 'ADD_FOO', foo: 'bar' })
   expect(mock).toHaveBeenCalled()
 })
+
+test('onMulti', async () => {
+  const mock = jest.fn()
+  emitter.onMulti(
+    new Set<Actions['type']>(['ADD_FOO', 'REMOVE_FOO']),
+    mock
+  )
+
+  await emitter.emit('ADD_FOO', {}, { type: 'ADD_FOO', foo: 'bar' })
+  expect(mock).not.toHaveBeenCalled()
+  await emitter.emit('ADD_FOO', {}, { type: 'ADD_FOO', foo: 'bar2' })
+  expect(mock).not.toHaveBeenCalled()
+  await emitter.emit('REMOVE_FOO', {}, { type: 'REMOVE_FOO' })
+  expect(mock).toHaveBeenCalledWith(
+    {},
+    {
+      ADD_FOO: { type: 'ADD_FOO', foo: 'bar2' },
+      REMOVE_FOO: { type: 'REMOVE_FOO' },
+    }
+  )
+
+  // Types
+  emitter.onMulti(
+    new Set<Actions['type']>(['ADD_FOO']),
+    async (_state, actions) => {
+      actions.ADD_FOO.foo // should not error
+    }
+  )
+})
