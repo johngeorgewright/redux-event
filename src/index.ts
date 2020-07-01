@@ -2,24 +2,32 @@ import { Middleware, AnyAction, Action } from 'redux'
 import EventEmitter, {
   ListenerAttacher,
   ErrorHandlerAttacher,
-  EventDescriptions,
   ActionsToEvents,
 } from './EventEmitter'
 
+export type Broker<State = any, Actions extends Action = AnyAction> = {
+  before: ListenerAttacher<State, ActionsToEvents<Actions>>
+  onceBefore: ListenerAttacher<State, ActionsToEvents<Actions>>
+  after: ListenerAttacher<State, ActionsToEvents<Actions>>
+  onceAfter: ListenerAttacher<State, ActionsToEvents<Actions>>
+  onError: ErrorHandlerAttacher<State, ActionsToEvents<Actions>>
+}
+
 export default function createMiddleware<
   State = any,
-  Actions extends Action = AnyAction,
-  Events extends EventDescriptions = ActionsToEvents<Actions>
->(): {
-  before: ListenerAttacher<State, Events>
-  onceBefore: ListenerAttacher<State, Events>
-  after: ListenerAttacher<State, Events>
-  onceAfter: ListenerAttacher<State, Events>
-  onError: ErrorHandlerAttacher<State, Events>
-  middleware: Middleware<{}, State>
-} {
-  const beforeEmitter = new EventEmitter<State, Actions, Events>()
-  const afterEmitter = new EventEmitter<State, Actions, Events>()
+  Actions extends Action = AnyAction
+>(): Broker<State, Actions> & { middleware: Middleware<{}, State> } {
+  const beforeEmitter = new EventEmitter<
+    State,
+    Actions,
+    ActionsToEvents<Actions>
+  >()
+
+  const afterEmitter = new EventEmitter<
+    State,
+    Actions,
+    ActionsToEvents<Actions>
+  >()
 
   return {
     before: beforeEmitter.on,
