@@ -20,6 +20,17 @@ export type ListenerAttacher<State, Events extends EventDescriptions> = <
   listener: Listener<State, Events[EventName]>
 ) => () => void
 
+export type MultiListenerArg<Events extends EventDescriptions> = {
+  [EventName in keyof Events]: Events[EventName]
+}
+
+export type MultiListenerAttacher<State, Events extends EventDescriptions> = <
+  EventName extends keyof Events
+>(
+  eventNames: Set<EventName>,
+  listener: Listener<State, MultiListenerArg<Events>>
+) => () => void
+
 type ErrorHandler<State, Events extends EventDescriptions> = (
   error: EventEmitterError<State, Events, any>
 ) => void
@@ -113,17 +124,19 @@ export default class EventEmitter<
     ]
   }
 
-  onMulti<
-    EventName extends keyof Events,
-    T = Record<EventName, Events[EventName]>
-  >(eventNames: Set<EventName>, listener: Listener<State, T>) {
-    let actions = {} as T
+  onMulti: MultiListenerAttacher<State, Events> = <
+    EventName extends keyof Events
+  >(
+    eventNames: Set<EventName>,
+    listener: Listener<State, MultiListenerArg<Events>>
+  ) => {
+    let actions = {} as MultiListenerArg<Events>
     let state: State
 
     const finish = (action: Events[EventName]) => {
       if (Object.keys(actions).length === eventNames.size) {
         const $actions = { ...actions }
-        actions = {} as T
+        actions = {} as MultiListenerArg<Events>
 
         listener(state, $actions).catch((error) => {
           this.callErrorHandlers(error, state, action)
@@ -143,10 +156,12 @@ export default class EventEmitter<
     return () => offs.forEach((off) => off())
   }
 
-  onceMulti<
-    EventName extends keyof Events,
-    T = Record<EventName, Events[EventName]>
-  >(eventNames: Set<EventName>, listener: Listener<State, T>) {
+  onceMulti: MultiListenerAttacher<State, Events> = <
+    EventName extends keyof Events
+  >(
+    eventNames: Set<EventName>,
+    listener: Listener<State, MultiListenerArg<Events>>
+  ) => {
     const wrapper: typeof listener = async (...args) => {
       off()
       listener(...args)

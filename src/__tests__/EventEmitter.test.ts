@@ -70,4 +70,12 @@ test('onMulti', async () => {
       REMOVE_FOO: { type: 'REMOVE_FOO' },
     }
   )
+
+  // Types
+  emitter.onMulti(
+    new Set<Actions['type']>(['ADD_FOO']),
+    async (_state, actions) => {
+      actions.ADD_FOO.foo // should not error
+    }
+  )
 })
