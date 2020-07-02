@@ -9,12 +9,12 @@ import EventEmitter, {
 export type Broker<State = any, Actions extends Action = AnyAction> = {
   before: ListenerAttacher<State, ActionsToEvents<Actions>>
   onceBefore: ListenerAttacher<State, ActionsToEvents<Actions>>
-  multiBefore: MultiListenerAttacher<State, ActionsToEvents<Actions>>
-  onceMultiBefore: MultiListenerAttacher<State, ActionsToEvents<Actions>>
+  multiBefore: MultiListenerAttacher<ActionsToEvents<Actions>>
+  onceMultiBefore: MultiListenerAttacher<ActionsToEvents<Actions>>
   after: ListenerAttacher<State, ActionsToEvents<Actions>>
   onceAfter: ListenerAttacher<State, ActionsToEvents<Actions>>
-  multiAfter: MultiListenerAttacher<State, ActionsToEvents<Actions>>
-  onceMultiAfter: MultiListenerAttacher<State, ActionsToEvents<Actions>>
+  multiAfter: MultiListenerAttacher<ActionsToEvents<Actions>>
+  onceMultiAfter: MultiListenerAttacher<ActionsToEvents<Actions>>
   onError: ErrorHandlerAttacher<State, ActionsToEvents<Actions>>
 }
 

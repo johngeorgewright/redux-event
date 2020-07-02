@@ -7,9 +7,9 @@ export default class EventEmitterError<
 > extends Error {
   readonly action: Events[EventName]
   readonly originalError: Error
-  readonly state: State
+  readonly state?: State
 
-  constructor(originalError: Error, state: State, action: Events[EventName]) {
+  constructor(originalError: Error, action: Events[EventName], state?: State) {
     super(originalError.message)
     this.originalError = originalError
     this.state = state
