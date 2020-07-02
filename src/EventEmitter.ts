@@ -24,11 +24,13 @@ export type MultiListenerArg<Events extends EventDescriptions> = {
   [EventName in keyof Events]: Events[EventName]
 }
 
-export type MultiListenerAttacher<State, Events extends EventDescriptions> = <
+export type StatelessListener<A> = (arg: A) => Promise<void>
+
+export type MultiListenerAttacher<Events extends EventDescriptions> = <
   EventName extends keyof Events
 >(
   eventNames: Set<EventName>,
-  listener: Listener<State, MultiListenerArg<Events>>
+  listener: StatelessListener<MultiListenerArg<Events>>
 ) => () => void
 
 type ErrorHandler<State, Events extends EventDescriptions> = (
@@ -60,19 +62,19 @@ export default class EventEmitter<
     try {
       await listener(state, action)
     } catch (error) {
-      this.callErrorHandlers(error, state, action)
+      this.callErrorHandlers(error, action, state)
     }
   }
 
   private callErrorHandlers<EventName extends keyof Events>(
     error: Error,
-    state: State,
-    action: Events[EventName]
+    action: Events[EventName],
+    state?: State
   ) {
     const eventEmitterError = new EventEmitterError<State, Events, EventName>(
       error,
-      state,
-      action
+      action,
+      state
     )
 
     for (const errorHandler of this.errorHandlers) {
@@ -124,31 +126,26 @@ export default class EventEmitter<
     ]
   }
 
-  onMulti: MultiListenerAttacher<State, Events> = <
-    EventName extends keyof Events
-  >(
+  onMulti: MultiListenerAttacher<Events> = <EventName extends keyof Events>(
     eventNames: Set<EventName>,
-    listener: Listener<State, MultiListenerArg<Events>>
+    listener: StatelessListener<MultiListenerArg<Events>>
   ) => {
     let actions = {} as MultiListenerArg<Events>
-    let state: State
 
     const finish = (action: Events[EventName]) => {
       if (Object.keys(actions).length === eventNames.size) {
         const $actions = { ...actions }
         actions = {} as MultiListenerArg<Events>
 
-        listener(state, $actions).catch((error) => {
-          this.callErrorHandlers(error, state, action)
+        listener($actions).catch((error) => {
+          this.callErrorHandlers(error, action)
         })
       }
     }
 
     const offs = [...eventNames].map((eventName) =>
-      this.on(eventName, async (s, action) => {
-        // @ts-ignore EventName cannot be used to index type T!!?? da fuck?
+      this.on(eventName, async (_, action) => {
         actions[eventName] = action
-        state = s
         finish(action)
       })
     )
@@ -156,11 +153,9 @@ export default class EventEmitter<
     return () => offs.forEach((off) => off())
   }
 
-  onceMulti: MultiListenerAttacher<State, Events> = <
-    EventName extends keyof Events
-  >(
+  onceMulti: MultiListenerAttacher<Events> = <EventName extends keyof Events>(
     eventNames: Set<EventName>,
-    listener: Listener<State, MultiListenerArg<Events>>
+    listener: StatelessListener<MultiListenerArg<Events>>
   ) => {
     const wrapper: typeof listener = async (...args) => {
       off()
