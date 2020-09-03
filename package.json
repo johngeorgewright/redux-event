@@ -4,7 +4,6 @@
   "description": "Compose and react upon redux actions",
   "main": "dist/index.js",
   "scripts": {
-    "prepublishOnly": "npm run build",
     "prebuild": "npm run clean",
     "build": "tsc",
     "postbuild": "rimraf dist/**/__tests__",
