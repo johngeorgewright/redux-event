@@ -32,7 +32,7 @@ Then install the middleware:
 ```javascript
 // ./store/index.js
 
-import { applyMiddleware, createStore } from 'redux
+import { applyMiddleware, createStore } from 'redux'
 import { middleware as eventMiddleware } from './middleware/events'
 import reducer from './reducer'
 
