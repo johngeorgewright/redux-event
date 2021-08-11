@@ -34,7 +34,7 @@ test('before', async () => {
   expect(mock).toHaveBeenCalledWith({}, { type: 'ADD_FOO', foo: 'bar' })
 })
 
-test('after', async (done) => {
+test('after', (done) => {
   const { after, middleware } = eventMiddleware<State, Actions>()
   const store = createStore(reducer, applyMiddleware(middleware))
 
