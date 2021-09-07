@@ -61,7 +61,7 @@ export default class EventEmitter<
   ) {
     try {
       await listener(state, action)
-    } catch (error) {
+    } catch (error: any) {
       this.callErrorHandlers(error, action, state)
     }
   }
