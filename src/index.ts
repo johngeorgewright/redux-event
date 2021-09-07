@@ -6,7 +6,7 @@ import EventEmitter, {
   MultiListenerAttacher,
 } from './EventEmitter'
 
-export type Broker<State = any, Actions extends Action = AnyAction> = {
+export type Broker<State = any, Actions extends Action = AnyAction> = Readonly<{
   before: ListenerAttacher<State, ActionsToEvents<Actions>>
   onceBefore: ListenerAttacher<State, ActionsToEvents<Actions>>
   multiBefore: MultiListenerAttacher<ActionsToEvents<Actions>>
@@ -16,7 +16,7 @@ export type Broker<State = any, Actions extends Action = AnyAction> = {
   multiAfter: MultiListenerAttacher<ActionsToEvents<Actions>>
   onceMultiAfter: MultiListenerAttacher<ActionsToEvents<Actions>>
   onError: ErrorHandlerAttacher<State, ActionsToEvents<Actions>>
-}
+}>
 
 export { EventEmitter }
 export { default as EventEmitterError } from './EventEmitterError'
@@ -24,7 +24,7 @@ export { default as EventEmitterError } from './EventEmitterError'
 export default function createMiddleware<
   State = any,
   Actions extends Action = AnyAction
->(): Broker<State, Actions> & { middleware: Middleware<{}, State> } {
+>(): Broker<State, Actions> & Readonly<{ middleware: Middleware<{}, State> }> {
   const beforeEmitter = new EventEmitter<
     State,
     Actions,
@@ -37,7 +37,7 @@ export default function createMiddleware<
     ActionsToEvents<Actions>
   >()
 
-  return {
+  return Object.freeze({
     before: beforeEmitter.on,
     onceBefore: beforeEmitter.once,
     multiBefore: beforeEmitter.onMulti,
@@ -56,5 +56,5 @@ export default function createMiddleware<
       afterEmitter.emit(action.type, store.getState(), action)
       return result
     },
-  }
+  })
 }
