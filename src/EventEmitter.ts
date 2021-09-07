@@ -54,7 +54,7 @@ export default class EventEmitter<
     this.errorHandlers = []
   }
 
-  private async callListener<EventName extends keyof Events>(
+  async #callListener<EventName extends keyof Events>(
     state: State,
     action: Events[EventName],
     listener: Listener<State, Events[EventName]>
@@ -62,11 +62,11 @@ export default class EventEmitter<
     try {
       await listener(state, action)
     } catch (error: any) {
-      this.callErrorHandlers(error, action, state)
+      this.#callErrorHandlers(error, action, state)
     }
   }
 
-  private callErrorHandlers<EventName extends keyof Events>(
+  #callErrorHandlers<EventName extends keyof Events>(
     error: Error,
     action: Events[EventName],
     state?: State
@@ -82,7 +82,7 @@ export default class EventEmitter<
     }
   }
 
-  on: ListenerAttacher<State, Events> = (eventName, listener) => {
+  readonly on: ListenerAttacher<State, Events> = (eventName, listener) => {
     if (!this.listeners[eventName]) {
       this.listeners[eventName] = []
     }
@@ -92,7 +92,9 @@ export default class EventEmitter<
     return () => this.off(eventName, listener)
   }
 
-  once: ListenerAttacher<State, Events> = <EventName extends keyof Events>(
+  readonly once: ListenerAttacher<State, Events> = <
+    EventName extends keyof Events
+  >(
     eventName: EventName,
     listener: Listener<State, Events[EventName]>
   ) => {
@@ -126,7 +128,9 @@ export default class EventEmitter<
     ]
   }
 
-  onMulti: MultiListenerAttacher<Events> = <EventName extends keyof Events>(
+  readonly onMulti: MultiListenerAttacher<Events> = <
+    EventName extends keyof Events
+  >(
     eventNames: Set<EventName>,
     listener: StatelessListener<MultiListenerArg<Events>>
   ) => {
@@ -138,7 +142,7 @@ export default class EventEmitter<
         actions = {} as MultiListenerArg<Events>
 
         listener($actions).catch((error) => {
-          this.callErrorHandlers(error, action)
+          this.#callErrorHandlers(error, action)
         })
       }
     }
@@ -153,7 +157,9 @@ export default class EventEmitter<
     return () => offs.forEach((off) => off())
   }
 
-  onceMulti: MultiListenerAttacher<Events> = <EventName extends keyof Events>(
+  readonly onceMulti: MultiListenerAttacher<Events> = <
+    EventName extends keyof Events
+  >(
     eventNames: Set<EventName>,
     listener: StatelessListener<MultiListenerArg<Events>>
   ) => {
@@ -166,7 +172,7 @@ export default class EventEmitter<
     return off
   }
 
-  onError: ErrorHandlerAttacher<State, Events> = (handler) => {
+  readonly onError: ErrorHandlerAttacher<State, Events> = (handler) => {
     this.errorHandlers.push(handler)
   }
 
@@ -177,7 +183,7 @@ export default class EventEmitter<
   ) {
     await Promise.all(
       (this.listeners[eventName] || []).map((listener) =>
-        this.callListener(state, action, listener)
+        this.#callListener(state, action, listener)
       )
     )
   }
