@@ -4,9 +4,7 @@
   "description": "Compose and react upon redux actions",
   "main": "dist/index.js",
   "scripts": {
-    "prebuild": "npm run clean",
-    "build": "tsc",
-    "postbuild": "rimraf dist/**/__tests__",
+    "build": "yarn clean && tsc && rimraf dist/**/__tests__",
     "clean": "rimraf dist",
     "test": "jest src"
   },
@@ -27,18 +25,24 @@
   "devDependencies": {
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^15.0.0",
-    "@types/jest": "^27.0.0",
-    "@types/node": "^14.0.14",
+    "@semantic-release/commit-analyzer": "9.0.2",
+    "@semantic-release/git": "10.0.1",
+    "@semantic-release/github": "8.0.2",
+    "@semantic-release/npm": "8.0.3",
+    "@semantic-release/release-notes-generator": "10.0.3",
+    "@types/jest": "^27.0.3",
+    "@types/node": "^16.11.12",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
-    "husky": "^7.0.1",
-    "jest": "^26.1.0",
-    "lint-staged": "^12.0.2",
-    "prettier": "^2.0.5",
-    "redux": "^4.0.5",
+    "husky": "^7.0.4",
+    "jest": "^27.4.4",
+    "lint-staged": "^12.1.2",
+    "prettier": "^2.5.1",
+    "redux": "^4.1.2",
     "rimraf": "^3.0.2",
-    "ts-jest": "^26.1.1",
-    "typescript": "^4.0.2"
+    "semantic-release": "18.0.1",
+    "ts-jest": "^27.1.1",
+    "typescript": "^4.5.3"
   },
   "peerDependencies": {
     "redux": ">=4.0.0"
@@ -58,5 +62,6 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "packageManager": "yarn@3.1.1"
 }
