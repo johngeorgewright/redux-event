@@ -1,6 +1,3 @@
-# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
-# For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
-
 name: NPM Publish
 
 on:
@@ -13,20 +10,23 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - uses: actions/setup-node@v1
+      - name: Get Node Version from NVM
+        run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
+        id: nvm
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
         with:
-          node-version: 12
-      - run: npm install-ci-test
-      - run: npm run build
+          node-version: ${{ steps.nvm.outputs.NODE_VERSION }}
 
-      - uses: codfish/semantic-release-action@v1
-        id: semantic
+      - run: yarn --immutable
+
+      - run: yarn build
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_ENV: production
+
+      - name: Release
+        run: yarn semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.PUSH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - run: echo ${{ steps.semantic.outputs.release-version }}
-
-      - run: echo "$OUTPUTS"
-        env:
-          OUTPUTS: ${{ toJson(steps.semantic.outputs) }}
