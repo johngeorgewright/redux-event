@@ -35,7 +35,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {
           "packageLocation": "./",
           "packageDependencies": [
-            ["@commitlint/cli", "npm:16.0.2"],
+            ["@commitlint/cli", "npm:16.0.3"],
             ["@commitlint/config-conventional", "npm:16.0.0"],
             ["@semantic-release/commit-analyzer", "virtual:8e700fd456d50f6da37430593bc9d2afe809721c9f048ed4b4c5f47fb84331a2a853c382bf79882f82361ba0770e782b4e1fbd195a65bff8ad3dbec6b0ec0e22#npm:9.0.2"],
             ["@semantic-release/git", "virtual:01ec4e017e646d8630683e7084e509d81243e1c1b58b523a65847222cc19492976c5cb802aa5d6789754ccbe37b506ff5a6087f4d8dadae5e65139e9bbb140bb#npm:10.0.1"],
@@ -1058,10 +1058,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["@commitlint/cli", [
-        ["npm:16.0.2", {
-          "packageLocation": "./.yarn/cache/@commitlint-cli-npm-16.0.2-0fc722cf95-20760e0f8d.zip/node_modules/@commitlint/cli/",
+        ["npm:16.0.3", {
+          "packageLocation": "./.yarn/cache/@commitlint-cli-npm-16.0.3-efc8ffa99f-d4aeb8e32a.zip/node_modules/@commitlint/cli/",
           "packageDependencies": [
-            ["@commitlint/cli", "npm:16.0.2"],
+            ["@commitlint/cli", "npm:16.0.3"],
             ["@commitlint/format", "npm:16.0.0"],
             ["@commitlint/lint", "npm:16.0.0"],
             ["@commitlint/load", "npm:16.0.0"],
@@ -8479,7 +8479,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",
           "packageDependencies": [
             ["redux-event", "workspace:."],
-            ["@commitlint/cli", "npm:16.0.2"],
+            ["@commitlint/cli", "npm:16.0.3"],
             ["@commitlint/config-conventional", "npm:16.0.0"],
             ["@semantic-release/commit-analyzer", "virtual:8e700fd456d50f6da37430593bc9d2afe809721c9f048ed4b4c5f47fb84331a2a853c382bf79882f82361ba0770e782b4e1fbd195a65bff8ad3dbec6b0ec0e22#npm:9.0.2"],
             ["@semantic-release/git", "virtual:01ec4e017e646d8630683e7084e509d81243e1c1b58b523a65847222cc19492976c5cb802aa5d6789754ccbe37b506ff5a6087f4d8dadae5e65139e9bbb140bb#npm:10.0.1"],
