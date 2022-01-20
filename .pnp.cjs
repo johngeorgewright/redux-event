@@ -54,7 +54,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rimraf", "npm:3.0.2"],
             ["semantic-release", "npm:19.0.2"],
             ["ts-jest", "virtual:01ec4e017e646d8630683e7084e509d81243e1c1b58b523a65847222cc19492976c5cb802aa5d6789754ccbe37b506ff5a6087f4d8dadae5e65139e9bbb140bb#npm:27.1.3"],
-            ["typescript", "patch:typescript@npm%3A4.5.4#~builtin<compat/typescript>::version=4.5.4&hash=493e53"]
+            ["typescript", "patch:typescript@npm%3A4.5.5#~builtin<compat/typescript>::version=4.5.5&hash=493e53"]
           ],
           "linkType": "SOFT",
         }]
@@ -8498,7 +8498,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rimraf", "npm:3.0.2"],
             ["semantic-release", "npm:19.0.2"],
             ["ts-jest", "virtual:01ec4e017e646d8630683e7084e509d81243e1c1b58b523a65847222cc19492976c5cb802aa5d6789754ccbe37b506ff5a6087f4d8dadae5e65139e9bbb140bb#npm:27.1.3"],
-            ["typescript", "patch:typescript@npm%3A4.5.4#~builtin<compat/typescript>::version=4.5.4&hash=493e53"]
+            ["typescript", "patch:typescript@npm%3A4.5.5#~builtin<compat/typescript>::version=4.5.5&hash=493e53"]
           ],
           "linkType": "SOFT",
         }]
@@ -9632,7 +9632,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["lodash.memoize", "npm:4.1.2"],
             ["make-error", "npm:1.3.6"],
             ["semver", "npm:7.3.5"],
-            ["typescript", "patch:typescript@npm%3A4.5.4#~builtin<compat/typescript>::version=4.5.4&hash=493e53"],
+            ["typescript", "patch:typescript@npm%3A4.5.5#~builtin<compat/typescript>::version=4.5.5&hash=493e53"],
             ["yargs-parser", "npm:20.2.9"]
           ],
           "packagePeers": [
@@ -9843,10 +9843,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "HARD",
         }],
-        ["patch:typescript@npm%3A4.5.4#~builtin<compat/typescript>::version=4.5.4&hash=493e53", {
-          "packageLocation": "./.yarn/cache/typescript-patch-0b90225f97-2e488dde7d.zip/node_modules/typescript/",
+        ["patch:typescript@npm%3A4.5.5#~builtin<compat/typescript>::version=4.5.5&hash=493e53", {
+          "packageLocation": "./.yarn/cache/typescript-patch-3020d8933d-c05c318d79.zip/node_modules/typescript/",
           "packageDependencies": [
-            ["typescript", "patch:typescript@npm%3A4.5.4#~builtin<compat/typescript>::version=4.5.4&hash=493e53"]
+            ["typescript", "patch:typescript@npm%3A4.5.5#~builtin<compat/typescript>::version=4.5.5&hash=493e53"]
           ],
           "linkType": "HARD",
         }]
