@@ -33,7 +33,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
-            ["@commitlint/cli", "npm:17.0.0"],\
+            ["@commitlint/cli", "npm:17.0.1"],\
             ["@commitlint/config-conventional", "npm:17.0.0"],\
             ["@semantic-release/commit-analyzer", "virtual:8e700fd456d50f6da37430593bc9d2afe809721c9f048ed4b4c5f47fb84331a2a853c382bf79882f82361ba0770e782b4e1fbd195a65bff8ad3dbec6b0ec0e22#npm:9.0.2"],\
             ["@semantic-release/git", "virtual:01ec4e017e646d8630683e7084e509d81243e1c1b58b523a65847222cc19492976c5cb802aa5d6789754ccbe37b506ff5a6087f4d8dadae5e65139e9bbb140bb#npm:10.0.1"],\
@@ -1082,15 +1082,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@commitlint/cli", [\
-        ["npm:17.0.0", {\
-          "packageLocation": "./.yarn/cache/@commitlint-cli-npm-17.0.0-d282c401da-ac7159458e.zip/node_modules/@commitlint/cli/",\
+        ["npm:17.0.1", {\
+          "packageLocation": "./.yarn/cache/@commitlint-cli-npm-17.0.1-f3d480a3b9-7a69ce6eeb.zip/node_modules/@commitlint/cli/",\
           "packageDependencies": [\
-            ["@commitlint/cli", "npm:17.0.0"],\
+            ["@commitlint/cli", "npm:17.0.1"],\
             ["@commitlint/format", "npm:17.0.0"],\
             ["@commitlint/lint", "npm:17.0.0"],\
             ["@commitlint/load", "npm:17.0.0"],\
             ["@commitlint/read", "npm:17.0.0"],\
             ["@commitlint/types", "npm:17.0.0"],\
+            ["execa", "npm:5.1.1"],\
             ["lodash", "npm:4.17.21"],\
             ["resolve-from", "npm:5.0.0"],\
             ["resolve-global", "npm:1.0.0"],\
@@ -8518,7 +8519,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["redux-event", "workspace:."],\
-            ["@commitlint/cli", "npm:17.0.0"],\
+            ["@commitlint/cli", "npm:17.0.1"],\
             ["@commitlint/config-conventional", "npm:17.0.0"],\
             ["@semantic-release/commit-analyzer", "virtual:8e700fd456d50f6da37430593bc9d2afe809721c9f048ed4b4c5f47fb84331a2a853c382bf79882f82361ba0770e782b4e1fbd195a65bff8ad3dbec6b0ec0e22#npm:9.0.2"],\
             ["@semantic-release/git", "virtual:01ec4e017e646d8630683e7084e509d81243e1c1b58b523a65847222cc19492976c5cb802aa5d6789754ccbe37b506ff5a6087f4d8dadae5e65139e9bbb140bb#npm:10.0.1"],\
