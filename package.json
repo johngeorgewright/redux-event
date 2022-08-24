@@ -30,7 +30,7 @@
     "@semantic-release/github": "8.0.5",
     "@semantic-release/npm": "9.0.1",
     "@semantic-release/release-notes-generator": "10.0.3",
-    "@types/jest": "28.1.7",
+    "@types/jest": "28.1.8",
     "@types/node": "16.11.52",
     "commitizen": "4.2.5",
     "cz-conventional-changelog": "3.3.0",
