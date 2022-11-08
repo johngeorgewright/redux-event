@@ -39,7 +39,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.18.3"],\
             ["commitizen", "npm:4.2.5"],\
             ["cz-conventional-changelog", "npm:3.3.0"],\
-            ["husky", "npm:8.0.1"],\
+            ["husky", "npm:8.0.2"],\
             ["jest", "virtual:01ec4e017e646d8630683e7084e509d81243e1c1b58b523a65847222cc19492976c5cb802aa5d6789754ccbe37b506ff5a6087f4d8dadae5e65139e9bbb140bb#npm:29.3.0"],\
             ["lint-staged", "npm:13.0.3"],\
             ["prettier", "npm:2.7.1"],\
@@ -5536,10 +5536,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["husky", [\
-        ["npm:8.0.1", {\
-          "packageLocation": "./.yarn/cache/husky-npm-8.0.1-85fede8470-943a73a13d.zip/node_modules/husky/",\
+        ["npm:8.0.2", {\
+          "packageLocation": "./.yarn/cache/husky-npm-8.0.2-46c70b41ed-e101656fcb.zip/node_modules/husky/",\
           "packageDependencies": [\
-            ["husky", "npm:8.0.1"]\
+            ["husky", "npm:8.0.2"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -9012,7 +9012,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:16.18.3"],\
             ["commitizen", "npm:4.2.5"],\
             ["cz-conventional-changelog", "npm:3.3.0"],\
-            ["husky", "npm:8.0.1"],\
+            ["husky", "npm:8.0.2"],\
             ["jest", "virtual:01ec4e017e646d8630683e7084e509d81243e1c1b58b523a65847222cc19492976c5cb802aa5d6789754ccbe37b506ff5a6087f4d8dadae5e65139e9bbb140bb#npm:29.3.0"],\
             ["lint-staged", "npm:13.0.3"],\
             ["prettier", "npm:2.7.1"],\
