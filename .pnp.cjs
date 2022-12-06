@@ -37,7 +37,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@semantic-release/release-notes-generator", "virtual:93ff9e54e7e85ba03f8777529e2e31fd687b3208f0bfd29f9526626fccebedcf25fd704ae938492bcd5692d38a16927bd020804d445cde5885dc772e9e1e1ff9#npm:10.0.3"],\
             ["@types/jest", "npm:29.2.4"],\
             ["@types/node", "npm:16.18.6"],\
-            ["commitizen", "npm:4.2.5"],\
+            ["commitizen", "npm:4.2.6"],\
             ["cz-conventional-changelog", "npm:3.3.0"],\
             ["husky", "npm:8.0.2"],\
             ["jest", "virtual:01ec4e017e646d8630683e7084e509d81243e1c1b58b523a65847222cc19492976c5cb802aa5d6789754ccbe37b506ff5a6087f4d8dadae5e65139e9bbb140bb#npm:29.3.1"],\
@@ -3979,10 +3979,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "HARD"\
         }],\
-        ["npm:4.2.5", {\
-          "packageLocation": "./.yarn/cache/commitizen-npm-4.2.5-926ae634bf-28f5d10cf3.zip/node_modules/commitizen/",\
+        ["npm:4.2.6", {\
+          "packageLocation": "./.yarn/cache/commitizen-npm-4.2.6-d83eace98b-4423b25900.zip/node_modules/commitizen/",\
           "packageDependencies": [\
-            ["commitizen", "npm:4.2.5"],\
+            ["commitizen", "npm:4.2.6"],\
             ["cachedir", "npm:2.3.0"],\
             ["cz-conventional-changelog", "npm:3.3.0"],\
             ["dedent", "npm:0.7.0"],\
@@ -8940,7 +8940,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@semantic-release/release-notes-generator", "virtual:93ff9e54e7e85ba03f8777529e2e31fd687b3208f0bfd29f9526626fccebedcf25fd704ae938492bcd5692d38a16927bd020804d445cde5885dc772e9e1e1ff9#npm:10.0.3"],\
             ["@types/jest", "npm:29.2.4"],\
             ["@types/node", "npm:16.18.6"],\
-            ["commitizen", "npm:4.2.5"],\
+            ["commitizen", "npm:4.2.6"],\
             ["cz-conventional-changelog", "npm:3.3.0"],\
             ["husky", "npm:8.0.2"],\
             ["jest", "virtual:01ec4e017e646d8630683e7084e509d81243e1c1b58b523a65847222cc19492976c5cb802aa5d6789754ccbe37b506ff5a6087f4d8dadae5e65139e9bbb140bb#npm:29.3.1"],\
