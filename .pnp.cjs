@@ -43,7 +43,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "virtual:01ec4e017e646d8630683e7084e509d81243e1c1b58b523a65847222cc19492976c5cb802aa5d6789754ccbe37b506ff5a6087f4d8dadae5e65139e9bbb140bb#npm:29.4.1"],\
             ["lint-staged", "npm:13.1.0"],\
             ["prettier", "npm:2.8.3"],\
-            ["redux", "npm:4.2.0"],\
+            ["redux", "npm:4.2.1"],\
             ["rimraf", "npm:3.0.2"],\
             ["semantic-release", "npm:19.0.5"],\
             ["ts-jest", "virtual:01ec4e017e646d8630683e7084e509d81243e1c1b58b523a65847222cc19492976c5cb802aa5d6789754ccbe37b506ff5a6087f4d8dadae5e65139e9bbb140bb#npm:29.0.5"],\
@@ -9007,10 +9007,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["redux", [\
-        ["npm:4.2.0", {\
-          "packageLocation": "./.yarn/cache/redux-npm-4.2.0-4688cc8d65-75f3955c89.zip/node_modules/redux/",\
+        ["npm:4.2.1", {\
+          "packageLocation": "./.yarn/cache/redux-npm-4.2.1-e7e2cf2e37-f63b9060c3.zip/node_modules/redux/",\
           "packageDependencies": [\
-            ["redux", "npm:4.2.0"],\
+            ["redux", "npm:4.2.1"],\
             ["@babel/runtime", "npm:7.16.3"]\
           ],\
           "linkType": "HARD"\
@@ -9036,7 +9036,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "virtual:01ec4e017e646d8630683e7084e509d81243e1c1b58b523a65847222cc19492976c5cb802aa5d6789754ccbe37b506ff5a6087f4d8dadae5e65139e9bbb140bb#npm:29.4.1"],\
             ["lint-staged", "npm:13.1.0"],\
             ["prettier", "npm:2.8.3"],\
-            ["redux", "npm:4.2.0"],\
+            ["redux", "npm:4.2.1"],\
             ["rimraf", "npm:3.0.2"],\
             ["semantic-release", "npm:19.0.5"],\
             ["ts-jest", "virtual:01ec4e017e646d8630683e7084e509d81243e1c1b58b523a65847222cc19492976c5cb802aa5d6789754ccbe37b506ff5a6087f4d8dadae5e65139e9bbb140bb#npm:29.0.5"],\
