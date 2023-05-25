@@ -36,7 +36,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@semantic-release/npm", "virtual:01ec4e017e646d8630683e7084e509d81243e1c1b58b523a65847222cc19492976c5cb802aa5d6789754ccbe37b506ff5a6087f4d8dadae5e65139e9bbb140bb#npm:9.0.2"],\
             ["@semantic-release/release-notes-generator", "virtual:93ff9e54e7e85ba03f8777529e2e31fd687b3208f0bfd29f9526626fccebedcf25fd704ae938492bcd5692d38a16927bd020804d445cde5885dc772e9e1e1ff9#npm:10.0.3"],\
             ["@types/jest", "npm:29.5.1"],\
-            ["@types/node", "npm:16.18.32"],\
+            ["@types/node", "npm:16.18.33"],\
             ["commitizen", "npm:4.3.0"],\
             ["cz-conventional-changelog", "npm:3.3.0"],\
             ["husky", "npm:8.0.3"],\
@@ -2830,10 +2830,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "linkType": "HARD"\
         }],\
-        ["npm:16.18.32", {\
-          "packageLocation": "./.yarn/cache/@types-node-npm-16.18.32-6a35f42ece-c5966c8e67.zip/node_modules/@types/node/",\
+        ["npm:16.18.33", {\
+          "packageLocation": "./.yarn/cache/@types-node-npm-16.18.33-a6b9959864-4d23c87761.zip/node_modules/@types/node/",\
           "packageDependencies": [\
-            ["@types/node", "npm:16.18.32"]\
+            ["@types/node", "npm:16.18.33"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -9044,7 +9044,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@semantic-release/npm", "virtual:01ec4e017e646d8630683e7084e509d81243e1c1b58b523a65847222cc19492976c5cb802aa5d6789754ccbe37b506ff5a6087f4d8dadae5e65139e9bbb140bb#npm:9.0.2"],\
             ["@semantic-release/release-notes-generator", "virtual:93ff9e54e7e85ba03f8777529e2e31fd687b3208f0bfd29f9526626fccebedcf25fd704ae938492bcd5692d38a16927bd020804d445cde5885dc772e9e1e1ff9#npm:10.0.3"],\
             ["@types/jest", "npm:29.5.1"],\
-            ["@types/node", "npm:16.18.32"],\
+            ["@types/node", "npm:16.18.33"],\
             ["commitizen", "npm:4.3.0"],\
             ["cz-conventional-changelog", "npm:3.3.0"],\
             ["husky", "npm:8.0.3"],\
