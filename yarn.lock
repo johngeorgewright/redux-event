@@ -2188,13 +2188,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:29.5.6":
-  version: 29.5.6
-  resolution: "@types/jest@npm:29.5.6"
+"@types/jest@npm:29.5.14":
+  version: 29.5.14
+  resolution: "@types/jest@npm:29.5.14"
   dependencies:
     expect: ^29.0.0
     pretty-format: ^29.0.0
-  checksum: fa13a27bd1c8efd0381a419478769d0d6d3a8e93e1952d7ac3a16274e8440af6f73ed6f96ac1ff00761198badf2ee226b5ab5583a5d87a78d609ea78da5c5a24
+  checksum: 18dba4623f26661641d757c63da2db45e9524c9be96a29ef713c703a9a53792df9ecee9f7365a0858ddbd6440d98fe6b65ca67895ca5884b73cbc7ffc11f3838
   languageName: node
   linkType: hard
 
@@ -7820,7 +7820,7 @@ __metadata:
     "@semantic-release/github": 8.1.0
     "@semantic-release/npm": 9.0.2
     "@semantic-release/release-notes-generator": 10.0.3
-    "@types/jest": 29.5.6
+    "@types/jest": 29.5.14
     "@types/node": 16.18.59
     commitizen: 4.3.0
     cz-conventional-changelog: 3.3.0
