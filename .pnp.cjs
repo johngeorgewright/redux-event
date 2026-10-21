@@ -43,7 +43,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "virtual:01ec4e017e646d8630683e7084e509d81243e1c1b58b523a65847222cc19492976c5cb802aa5d6789754ccbe37b506ff5a6087f4d8dadae5e65139e9bbb140bb#npm:29.7.0"],\
             ["lint-staged", "npm:13.3.0"],\
             ["prettier", "npm:2.8.8"],\
-            ["redux", "npm:4.2.1"],\
+            ["redux", "npm:5.0.1"],\
             ["rimraf", "npm:3.0.2"],\
             ["semantic-release", "npm:19.0.5"],\
             ["ts-jest", "virtual:01ec4e017e646d8630683e7084e509d81243e1c1b58b523a65847222cc19492976c5cb802aa5d6789754ccbe37b506ff5a6087f4d8dadae5e65139e9bbb140bb#npm:29.1.1"],\
@@ -997,16 +997,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packagePeers": [\
             "@babel/core",\
             "@types/babel__core"\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@babel/runtime", [\
-        ["npm:7.16.3", {\
-          "packageLocation": "./.yarn/cache/@babel-runtime-npm-7.16.3-b53f079b37-ab8ac88709.zip/node_modules/@babel/runtime/",\
-          "packageDependencies": [\
-            ["@babel/runtime", "npm:7.16.3"],\
-            ["regenerator-runtime", "npm:0.13.9"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -9230,11 +9220,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["redux", [\
-        ["npm:4.2.1", {\
-          "packageLocation": "./.yarn/cache/redux-npm-4.2.1-e7e2cf2e37-f63b9060c3.zip/node_modules/redux/",\
+        ["npm:5.0.1", {\
+          "packageLocation": "./.yarn/cache/redux-npm-5.0.1-f8e6b1cb23-e74affa900.zip/node_modules/redux/",\
           "packageDependencies": [\
-            ["redux", "npm:4.2.1"],\
-            ["@babel/runtime", "npm:7.16.3"]\
+            ["redux", "npm:5.0.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -9259,22 +9248,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "virtual:01ec4e017e646d8630683e7084e509d81243e1c1b58b523a65847222cc19492976c5cb802aa5d6789754ccbe37b506ff5a6087f4d8dadae5e65139e9bbb140bb#npm:29.7.0"],\
             ["lint-staged", "npm:13.3.0"],\
             ["prettier", "npm:2.8.8"],\
-            ["redux", "npm:4.2.1"],\
+            ["redux", "npm:5.0.1"],\
             ["rimraf", "npm:3.0.2"],\
             ["semantic-release", "npm:19.0.5"],\
             ["ts-jest", "virtual:01ec4e017e646d8630683e7084e509d81243e1c1b58b523a65847222cc19492976c5cb802aa5d6789754ccbe37b506ff5a6087f4d8dadae5e65139e9bbb140bb#npm:29.1.1"],\
             ["typescript", "patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=289587"]\
           ],\
           "linkType": "SOFT"\
-        }]\
-      ]],\
-      ["regenerator-runtime", [\
-        ["npm:0.13.9", {\
-          "packageLocation": "./.yarn/cache/regenerator-runtime-npm-0.13.9-6d02340eec-65ed455fe5.zip/node_modules/regenerator-runtime/",\
-          "packageDependencies": [\
-            ["regenerator-runtime", "npm:0.13.9"]\
-          ],\
-          "linkType": "HARD"\
         }]\
       ]],\
       ["registry-auth-token", [\
